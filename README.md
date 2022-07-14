@@ -6,6 +6,9 @@
 ## Problems Faced
 
 - At this time of writing (2022.07.14), Angular CLI 14 does not have `ng-bootstrap` support, which hinders a few visual implmentation, such as collapsing navbars
+- Managed to get around this by implementing this [https://github.com/ng-bootstrap/ng-bootstrap/issues/4340#issuecomment-1175816414]
+- Always cross-reference the Udemy project's bootstrap codes with the current version of bootstrap, since so much breaks between 3 to 4 and again to 5
+- ie. from 4 -> 5, almost anything with a `left` or `right` suffix is now `start` and `end` to respect Right-To-Left accessibility.
 
 #### Development server
 
