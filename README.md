@@ -3,6 +3,10 @@
 - This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.5.
 - This project is a simple recipe book and shopping list app, implementing some data binds, and editable lists.
 
+## Problems Faced
+
+- At this time of writing (2022.07.14), Angular CLI 14 does not have `ng-bootstrap` support, which hinders a few visual implmentation, such as collapsing navbars
+
 #### Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
