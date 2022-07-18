@@ -7,7 +7,9 @@ import { Ingredient } from '../shared/ingredient.model';
     <!-- Seperator -->
     <div class="row">
       <div class="col-xs-12">
-        <app-shopping-edit></app-shopping-edit>
+        <app-shopping-edit
+          (ingredientAdded)="onIngredientAdded($event)"
+        ></app-shopping-edit>
         <hr />
         <ul class="list-group">
           <a
@@ -33,4 +35,8 @@ export class ShoppingListComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  onIngredientAdded(ingredient: Ingredient) {
+    this.ingredients.push(ingredient);
+  }
 }

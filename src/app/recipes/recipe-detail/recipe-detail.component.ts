@@ -1,23 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Recipe } from 'src/app/shared/recipe.model';
 
 @Component({
   selector: 'app-recipe-detail',
   template: `
     <!-- Seperator -->
     <div class="row">
-      <div class="col-xs-12">
-        <img src="" alt="" class="img-responsive" />
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <h1>Recipe Name</h1>
+      <div class="col-xs-12 my-2" style="max-height: 200px; overflow: hidden;">
+        <img
+          [src]="recipe.imagePath"
+          alt="{{ recipe.name }}"
+          class="img-fluid w-100 rounded"
+          style="transform: translateY(-50%);"
+        />
       </div>
     </div>
     <div class="row">
       <div class="col-xs-12">
         <div ngbDropdown class="dropdown">
-          <button ngbDropdownToggle class="btn btn-primary dropdown-toggle">
+          <button
+            ngbDropdownToggle
+            class="btn w-100 btn-primary dropdown-toggle my-2"
+          >
             Manage Recipe
           </button>
           <ul ngbDropdownMenu class="dropdown-menu">
@@ -36,10 +40,27 @@ import { Component, OnInit } from '@angular/core';
         </div>
       </div>
     </div>
-    <!-- Seperator -->
+    <div class="row">
+      <div class="col-xs-12">
+        <h1>{{ recipe.name }}</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        {{ recipe.description }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <p class="text-secondary">Ingredients</p>
+        <!-- Seperator -->
+      </div>
+    </div>
   `,
 })
 export class RecipeDetailComponent implements OnInit {
+  @Input() recipe: Recipe;
+
   constructor() {}
 
   ngOnInit(): void {}

@@ -1,11 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Recipe } from 'src/app/shared/recipe.model';
 
 @Component({
   selector: 'app-recipe-item',
   template: `
     <!-- Seperator -->
-    <a href="#" class="list-group-item clearfix">
+    <a href="#" class="list-group-item clearfix" (click)="onSelected()">
       <div class="float-start">
         <h4 class="list-group-item-heading">{{ recipe.name }}</h4>
         <p class="list-group-item-text mb-0">{{ recipe.description }}</p>
@@ -24,8 +24,13 @@ import { Recipe } from 'src/app/shared/recipe.model';
 })
 export class RecipeItemComponent implements OnInit {
   @Input() recipe: Recipe;
+  @Output() recipeSelected = new EventEmitter<void>();
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit() {}
+
+  onSelected() {
+    this.recipeSelected.emit();
+  }
 }

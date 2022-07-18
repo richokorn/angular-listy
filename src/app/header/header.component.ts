@@ -4,9 +4,9 @@ import { Component, EventEmitter, Output } from '@angular/core';
   selector: 'app-header',
   template: `
     <!-- Seperator -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">🍓 listy</a>
+        <a class="navbar-brand my-1" href="#">🍓 listy</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -20,9 +20,9 @@ import { Component, EventEmitter, Output } from '@angular/core';
           id="navbarSupportedContent"
         >
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item me-2">
+            <li class="nav-item m-1">
               <div>
-                <hr class="divider py-1 bg-danger my-0" />
+                <hr class="divider py-1 bg-primary my-0" />
                 <a
                   class="nav-link"
                   (click)="onSelect('recipe')"
@@ -30,30 +30,30 @@ import { Component, EventEmitter, Output } from '@angular/core';
                   href="#"
                   >Recipes</a
                 >
-                <hr class="divider py-1 bg-danger my-0" />
+                <hr class="divider py-1 bg-primary my-0" />
               </div>
             </li>
-            <li class="nav-item me-2">
+            <li class="nav-item m-1">
               <div>
-                <hr class="divider py-1 bg-primary my-0" />
+                <hr class="divider py-1 bg-success my-0" />
                 <a class="nav-link" (click)="onSelect('shopping-list')" href="#"
                   >Shopping List</a
                 >
-                <hr class="divider py-1 bg-primary my-0" />
+                <hr class="divider py-1 bg-success my-0" />
               </div>
             </li>
-            <li class="nav-item me-2">
+            <li class="nav-item m-1">
               <div>
-                <hr class="divider py-1 bg-success my-0" />
+                <hr class="divider py-1 bg-secondary my-0" />
                 <a class="nav-link" href="#">Dummy Item 1</a>
-                <hr class="divider py-1 bg-success my-0" />
+                <hr class="divider py-1 bg-secondary my-0" />
               </div>
             </li>
-            <li class="nav-item me-2">
+            <li class="nav-item m-1">
               <div>
-                <hr class="divider py-1 bg-secondary my-0" />
+                <hr class="divider py-1 bg-danger my-0" />
                 <a class="nav-link" href="#">Dummy Item 2</a>
-                <hr class="divider py-1 bg-secondary my-0" />
+                <hr class="divider py-1 bg-danger my-0" />
               </div>
             </li>
           </ul>
