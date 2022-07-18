@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -20,11 +20,41 @@ import { Component } from '@angular/core';
           id="navbarSupportedContent"
         >
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">Recipes</a>
+            <li class="nav-item me-2">
+              <div>
+                <hr class="divider py-1 bg-danger my-0" />
+                <a
+                  class="nav-link"
+                  (click)="onSelect('recipe')"
+                  aria-current="page"
+                  href="#"
+                  >Recipes</a
+                >
+                <hr class="divider py-1 bg-danger my-0" />
+              </div>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Shopping List</a>
+            <li class="nav-item me-2">
+              <div>
+                <hr class="divider py-1 bg-primary my-0" />
+                <a class="nav-link" (click)="onSelect('shopping-list')" href="#"
+                  >Shopping List</a
+                >
+                <hr class="divider py-1 bg-primary my-0" />
+              </div>
+            </li>
+            <li class="nav-item me-2">
+              <div>
+                <hr class="divider py-1 bg-success my-0" />
+                <a class="nav-link" href="#">Dummy Item 1</a>
+                <hr class="divider py-1 bg-success my-0" />
+              </div>
+            </li>
+            <li class="nav-item me-2">
+              <div>
+                <hr class="divider py-1 bg-secondary my-0" />
+                <a class="nav-link" href="#">Dummy Item 2</a>
+                <hr class="divider py-1 bg-secondary my-0" />
+              </div>
             </li>
           </ul>
           <ul class="navbar-nav d-flex">
@@ -56,6 +86,11 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
   public isMenuCollapsed = true;
+
+  @Output() featureSelected = new EventEmitter<string>();
+  onSelect(feature: string) {
+    this.featureSelected.emit(feature);
+  }
 
   constructor() {}
 }

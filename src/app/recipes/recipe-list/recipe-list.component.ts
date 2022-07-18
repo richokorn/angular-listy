@@ -12,25 +12,10 @@ import { Recipe } from '../../shared/recipe.model';
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <a
-          href="#"
-          class="list-group-item clearfix"
-          *ngFor="let recipe of recipes"
-        >
-          <div class="float-start">
-            <h4 class="list-group-item-heading">{{ recipe.name }}</h4>
-            <p class="list-group-item-text mb-0">{{ recipe.description }}</p>
-          </div>
-          <div class="float-end">
-            <img
-              src="{{ recipe.imagePath }}"
-              alt="{{ recipe.name }}"
-              class="img-responsive"
-              style="max-height: 65px"
-            />
-          </div>
-        </a>
-        <app-recipe-item></app-recipe-item>
+        <app-recipe-item
+          *ngFor="let recipeEl of recipes"
+          [recipe]="recipeEl"
+        ></app-recipe-item>
       </div>
     </div>
     <!-- Seperator -->
