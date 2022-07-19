@@ -26,17 +26,6 @@ import { Component } from '@angular/core';
               'bg-success': loadedFeature === 'shopping-list'
             }"
           />
-          <br />
-          <p appBetterHighlight>
-            Better Highlight Directive Text - Hover over me!
-          </p>
-          <!-- <div [ngSwitch]="value">
-          <p *ngSwitchCase="5">Value is 5</p>
-          <p *ngSwitchCase="10">Value is 10</p>
-          <p *ngSwitchCase="100">Value is 100</p>
-          <p *ngSwitchDefault="5">Value is Default</p>
-        </div> -->
-          <!-- Seperator -->
         </div>
       </div>
     </div>
