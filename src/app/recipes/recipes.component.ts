@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../shared/recipe.model';
+import { RecipeService } from '../shared/recipe.service';
 
 @Component({
   selector: 'app-recipes',
@@ -23,6 +24,7 @@ import { Recipe } from '../shared/recipe.model';
     </div>
     <!-- Seperator -->
   `,
+  providers: [RecipeService],
 })
 export class RecipesComponent implements OnInit {
   selectedRecipe: Recipe;
