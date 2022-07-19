@@ -8,9 +8,7 @@ import { RecipeService } from '../shared/recipe.service';
     <!-- Seperator -->
     <div class="row">
       <div class="col-md-5">
-        <app-recipe-list
-          (recipeWasSelected)="selectedRecipe = $event"
-        ></app-recipe-list>
+        <app-recipe-list></app-recipe-list>
       </div>
       <div class="col-md-7">
         <app-recipe-detail
@@ -29,7 +27,11 @@ import { RecipeService } from '../shared/recipe.service';
 export class RecipesComponent implements OnInit {
   selectedRecipe: Recipe;
 
-  constructor() {}
+  constructor(private recipeService: RecipeService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.recipeService.recipeSelected.subscribe((recipe: Recipe) => {
+      this.selectedRecipe = recipe;
+    });
+  }
 }

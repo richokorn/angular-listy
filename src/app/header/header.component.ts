@@ -24,7 +24,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
               <div>
                 <hr class="divider py-1 bg-primary my-0" />
                 <a
-                  class="nav-link text-center"
+                  class="nav-link bg-blue-100"
                   (click)="onSelect('recipe')"
                   aria-current="page"
                   href="#"

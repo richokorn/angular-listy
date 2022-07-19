@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RecipeService } from 'src/app/shared/recipe.service';
 import { Recipe } from '../../shared/recipe.model';
 
@@ -17,7 +17,6 @@ import { Recipe } from '../../shared/recipe.model';
           class="me-1"
           *ngFor="let recipeElement of recipes"
           [recipe]="recipeElement"
-          (recipeSelected)="onRecipeSelected(recipeElement)"
         ></app-recipe-item>
       </div>
     </div>
@@ -25,16 +24,11 @@ import { Recipe } from '../../shared/recipe.model';
   `,
 })
 export class RecipeListComponent implements OnInit {
-  @Output() recipeWasSelected = new EventEmitter<Recipe>();
   recipes: Recipe[];
 
   constructor(private recipeService: RecipeService) {}
 
   ngOnInit() {
     this.recipes = this.recipeService.getRecipes();
-  }
-
-  onRecipeSelected(recipe: Recipe) {
-    this.recipeWasSelected.emit(recipe);
   }
 }
