@@ -6,7 +6,7 @@ import { Ingredient } from '../shared/ingredient.model';
   template: `
     <!-- Seperator -->
     <div class="row">
-      <div class="col-xs-12">
+      <div class="col-xs-12 my-2">
         <app-shopping-edit
           (ingredientAdded)="onIngredientAdded($event)"
         ></app-shopping-edit>
@@ -17,8 +17,19 @@ import { Ingredient } from '../shared/ingredient.model';
             style="cursor: pointer"
             *ngFor="let ingredient of ingredients"
           >
-            {{ ingredient.name }} - {{ ingredient.amount }}
-            {{ ingredient.unit }}
+            <span
+              class="badge badge-pill bg-primary"
+              style="min-width: min-content; width: 4vw"
+            >
+              {{ ingredient.amount }} {{ ingredient.unit }}</span
+            >
+            <span
+              class="badge btn bg-danger float-end"
+              (click)="onDelete(ingredient)"
+            >
+              X
+            </span>
+            {{ ingredient.name }}
           </a>
         </ul>
       </div>
@@ -38,5 +49,8 @@ export class ShoppingListComponent implements OnInit {
 
   onIngredientAdded(ingredient: Ingredient) {
     this.ingredients.push(ingredient);
+  }
+  onDelete(ingredient: Ingredient) {
+    this.ingredients.splice(this.ingredients.indexOf(ingredient), 1);
   }
 }

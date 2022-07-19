@@ -17,7 +17,7 @@ import { Ingredient } from 'src/app/shared/ingredient.model';
         <form>
           <div class="row">
             <div class="col-sm-7 form-group">
-              <label class="my-1" for="name">Name</label>
+              <label class="my-1" for="name">Ingredient</label>
               <input type="text" id="name" class="form-control" #nameInput />
             </div>
             <div class="col-sm-3 form-group">
