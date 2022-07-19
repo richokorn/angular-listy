@@ -29,6 +29,10 @@ import { Component } from '@angular/core';
         </div>
       </div>
       <p appBasicHighlight>Hello, I am text for the BasicHighlightDirective</p>
+      <hr />
+      <p appBetterHighlight>
+        Hello, I am text for the BetterHighlightDirective
+      </p>
     </div>
     <!-- Seperator -->
   `,
