@@ -26,9 +26,6 @@ import { Component } from '@angular/core';
               'bg-success': loadedFeature === 'shopping-list'
             }"
           />
-          <!-- Seperator -->
-          <br />
-          <p appBasicHighlight>Basic Highlight Directive Text</p>
           <br />
           <p appBetterHighlight>
             Better Highlight Directive Text - Hover over me!

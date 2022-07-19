@@ -19,16 +19,17 @@ import { Component, EventEmitter, Output } from '@angular/core';
           class="collapse navbar-collapse"
           id="navbarSupportedContent"
         >
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul class="navbar-nav me-auto text-center">
             <li class="nav-item m-1">
               <div>
                 <hr class="divider py-1 bg-primary my-0" />
                 <a
-                  class="nav-link"
+                  class="nav-link text-center"
                   (click)="onSelect('recipe')"
                   aria-current="page"
                   href="#"
-                  >Recipes</a
+                >
+                  Recipes</a
                 >
                 <hr class="divider py-1 bg-primary my-0" />
               </div>

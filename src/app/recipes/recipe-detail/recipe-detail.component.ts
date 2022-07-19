@@ -10,7 +10,7 @@ import { Recipe } from 'src/app/shared/recipe.model';
         <img
           [src]="recipe.imagePath"
           alt="{{ recipe.name }}"
-          class="img-fluid w-100 rounded"
+          class="img-fluid w-100"
           style="transform: translateY(-50%);"
         />
       </div>
