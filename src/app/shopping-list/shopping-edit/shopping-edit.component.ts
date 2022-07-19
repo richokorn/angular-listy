@@ -1,12 +1,6 @@
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  OnInit,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Ingredient } from 'src/app/shared/ingredient.model';
+import { ShoppingListService } from 'src/app/shared/shopping-list.service';
 
 @Component({
   selector: 'app-shopping-edit',
@@ -33,9 +27,8 @@ import { Ingredient } from 'src/app/shared/ingredient.model';
               <label class="my-1" for="unit">Unit</label>
               <select type="text" id="unit" class="form-control" #unitInput>
                 <option>g</option>
-                <option>kg</option>
                 <option>ml</option>
-                <option>L</option>
+                <option>pcs</option>
               </select>
             </div>
           </div>
@@ -43,15 +36,15 @@ import { Ingredient } from 'src/app/shared/ingredient.model';
             <div class="col-xs-12">
               <button
                 type="submit"
-                class="btn my-3 me-1 btn-success"
+                class="btn my-3 me-2 btn-success"
                 (click)="onAddItem()"
               >
                 Add
               </button>
-              <button type="submit" class="btn my-3 me-1 btn-danger">
+              <button type="submit" class="btn my-3 me-2 btn-danger">
                 Delete
               </button>
-              <button type="submit" class="btn my-3 me-1 btn-primary">
+              <button type="submit" class="btn my-3 me-2 btn-primary">
                 Clear
               </button>
             </div>
@@ -67,17 +60,15 @@ export class ShoppingEditComponent implements OnInit {
   @ViewChild('amountInput') amountInputRef: ElementRef;
   @ViewChild('unitInput') unitInputRef: ElementRef;
 
-  @Output() ingredientAdded = new EventEmitter<Ingredient>();
+  constructor(private shoppingListService: ShoppingListService) {}
 
-  constructor() {}
-
-  ngOnInit(): void {}
+  ngOnInit() {}
 
   onAddItem() {
-    const ingName = this.nameInputRef.nativeElement.value;
-    const ingAmount = this.amountInputRef.nativeElement.value;
-    const ingUnit = this.unitInputRef.nativeElement.value;
+    const ingName: string = this.nameInputRef.nativeElement.value;
+    const ingAmount: number = Number(this.amountInputRef.nativeElement.value);
+    const ingUnit: string = this.unitInputRef.nativeElement.value;
     const newIngredient = new Ingredient(ingName, ingAmount, ingUnit);
-    this.ingredientAdded.emit(newIngredient);
+    this.shoppingListService.addIngredient(newIngredient);
   }
 }

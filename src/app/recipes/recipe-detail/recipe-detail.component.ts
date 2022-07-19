@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Recipe } from 'src/app/shared/recipe.model';
+import { RecipeService } from 'src/app/shared/recipe.service';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -26,8 +27,12 @@ import { Recipe } from 'src/app/shared/recipe.model';
           </button>
           <ul ngbDropdownMenu class="dropdown-menu">
             <li>
-              <a class="dropdown-item" href="#"
-                >✔ Add Ingredients to Shopping List</a
+              <a
+                class="dropdown-item"
+                style="cursor: pointer;"
+                (click)="onAddToShoppingList()"
+              >
+                ✔ Add Ingredients to Shopping List</a
               >
             </li>
             <li>
@@ -52,7 +57,21 @@ import { Recipe } from 'src/app/shared/recipe.model';
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <p class="text-secondary">Ingredients</p>
+        <ul class="list-group">
+          <li
+            class="list-group-item"
+            *ngFor="let ingredient of recipe.ingredients"
+          >
+            <span
+              class="badge badge-pill bg-primary me-2 float-start"
+              style="min-width: min-content; width: 4vw"
+            >
+              {{ ingredient.amount }} {{ ingredient.unit }}</span
+            >
+            <span>{{ ingredient.name }}</span>
+          </li>
+        </ul>
+
         <!-- Seperator -->
       </div>
     </div>
@@ -61,7 +80,11 @@ import { Recipe } from 'src/app/shared/recipe.model';
 export class RecipeDetailComponent implements OnInit {
   @Input() recipe: Recipe;
 
-  constructor() {}
+  constructor(private recipeService: RecipeService) {}
 
   ngOnInit(): void {}
+
+  onAddToShoppingList() {
+    this.recipeService.addIngredientsToShoppingList(this.recipe.ingredients);
+  }
 }
