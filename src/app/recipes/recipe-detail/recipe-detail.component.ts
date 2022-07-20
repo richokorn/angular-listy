@@ -7,7 +7,7 @@ import { RecipeService } from 'src/app/shared/recipe.service';
   template: `
     <!-- Seperator -->
     <div class="row">
-      <div class="col-xs-12 my-2" style="max-height: 200px; overflow: hidden;">
+      <div class="col-xs-12 my-2" style="max-height: 175px; overflow: hidden;">
         <img
           [src]="recipe.imagePath"
           alt="{{ recipe.name }}"

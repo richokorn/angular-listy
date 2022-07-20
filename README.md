@@ -12,6 +12,8 @@
 
 #### Development server
 
+First run `npm install` (or `npm install --legacy-peerdeps` depending on how old the project code itself is) just to get the basic dependancies and CLI environment first.
+
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 #### Code scaffolding

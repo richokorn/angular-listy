@@ -7,10 +7,10 @@ import { RecipeService } from '../shared/recipe.service';
   template: `
     <!-- Seperator -->
     <div class="row">
-      <div class="col-md-5">
+      <div class="col-md-6">
         <app-recipe-list></app-recipe-list>
       </div>
-      <div class="col-md-7">
+      <div class="col-md-6">
         <app-recipe-detail
           *ngIf="selectedRecipe; else infoText"
           [recipe]="selectedRecipe"

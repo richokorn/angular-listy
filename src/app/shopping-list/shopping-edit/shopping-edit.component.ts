@@ -25,10 +25,16 @@ import { ShoppingListService } from 'src/app/shared/shopping-list.service';
             </div>
             <div class="col-sm-2 form-group">
               <label class="my-1" for="unit">Unit</label>
-              <select type="text" id="unit" class="form-control" #unitInput>
-                <option>g</option>
-                <option>ml</option>
-                <option>pcs</option>
+              <select
+                type="text"
+                id="unit"
+                class="form-control"
+                style="cursor: pointer"
+                #unitInput
+              >
+                <option style="cursor: pointer">g</option>
+                <option style="cursor: pointer">ml</option>
+                <option style="cursor: pointer">pcs</option>
               </select>
             </div>
           </div>
