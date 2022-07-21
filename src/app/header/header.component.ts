@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
     <!-- Seperator -->
     <nav class="navbar navbar-expand-md navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand my-1" href="#">🍓 listy</a>
+        <a class="navbar-brand my-0" href="#">🍓 listy</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -20,42 +20,57 @@ import { Component } from '@angular/core';
           id="navbarSupportedContent"
         >
           <ul class="navbar-nav me-auto text-center">
-            <li class="nav-item m-1">
-              <div>
-                <hr class="divider py-1 bg-primary my-0" />
-                <a class="nav-link bg-blue-100" routerLink="/recipes">
-                  Recipes</a
-                >
-                <hr class="divider py-1 bg-primary my-0" />
-              </div>
+            <hr class="my-1 py-1 bg-white" />
+            <li class="nav-item mx-0">
+              <a class="nav-link py-0" routerLink="/recipes">
+                <hr
+                  class="my-1 py-1 bg-primary"
+                  routerLinkActive="opacity-50"
+                />
+                <span class="px-3">Recipes</span>
+                <hr
+                  class="my-1 py-1 bg-primary"
+                  routerLinkActive="opacity-50"
+                />
+              </a>
             </li>
-            <li class="nav-item m-1">
-              <div>
-                <hr class="divider py-1 bg-success my-0" />
-                <a class="nav-link" routerLink="/shopping-list"
-                  >Shopping List</a
-                >
-                <hr class="divider py-1 bg-success my-0" />
-              </div>
+            <li class="nav-item mx-0">
+              <a class="nav-link py-0" routerLink="/shopping-list">
+                <hr
+                  class="my-1 py-1 bg-success"
+                  routerLinkActive="opacity-50"
+                />
+                <span class="px-3">Shopping List</span>
+                <hr
+                  class="my-1 py-1 bg-success"
+                  routerLinkActive="opacity-50"
+                />
+              </a>
             </li>
-            <li class="nav-item m-1">
-              <div>
-                <hr class="divider py-1 bg-secondary my-0" />
-                <a class="nav-link">Dummy Item 1</a>
-                <hr class="divider py-1 bg-secondary my-0" />
-              </div>
+            <li class="nav-item mx-0">
+              <a class="nav-link py-0" routerLink="##">
+                <hr class="my-1 py-1 bg-danger" routerLinkActive="opacity-50" />
+                <span class="px-3">Dummy 1</span>
+                <hr class="my-1 py-1 bg-danger" routerLinkActive="opacity-50" />
+              </a>
             </li>
-            <li class="nav-item m-1">
-              <div>
-                <hr class="divider py-1 bg-danger my-0" />
-                <a class="nav-link">Dummy Item 2</a>
-                <hr class="divider py-1 bg-danger my-0" />
-              </div>
+            <li class="nav-item mx-0">
+              <a class="nav-link py-0" routerLink="##">
+                <hr
+                  class="my-1 py-1 bg-secondary"
+                  routerLinkActive="opacity-50"
+                />
+                <span class="px-3">Dummy 2</span>
+                <hr
+                  class="my-1 py-1 bg-secondary"
+                  routerLinkActive="opacity-50"
+                />
+              </a>
             </li>
           </ul>
           <ul class="navbar-nav d-flex">
             <li ngbDropdown class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" ngbDropdownToggle> Manage </a>
+              <a class="nav-link dropdown-toggle" ngbDropdownToggle>Manage </a>
               <ul
                 ngbDropdownMenu
                 class="dropdown-menu"
