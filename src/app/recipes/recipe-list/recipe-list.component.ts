@@ -8,15 +8,16 @@ import { Recipe } from '../../shared/recipe.model';
     <!-- Seperator -->
     <div class="row">
       <div class="col-xs-12">
-        <button class="btn w-100 btn-primary my-2">New Recipe</button>
+        <button class="btn w-100 btn-primary mt-2">New Recipe</button>
       </div>
     </div>
     <div class="row">
       <div class="col-xs-12">
         <app-recipe-item
-          class="me-1"
-          *ngFor="let recipeElement of recipes"
+          class="ms-1"
+          *ngFor="let recipeElement of recipes; let i = index"
           [recipe]="recipeElement"
+          [index]="i"
         ></app-recipe-item>
       </div>
     </div>

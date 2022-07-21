@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Recipe } from 'src/app/shared/recipe.model';
-import { RecipeService } from 'src/app/shared/recipe.service';
 
 @Component({
   selector: 'app-recipe-item',
@@ -9,7 +8,8 @@ import { RecipeService } from 'src/app/shared/recipe.service';
     <a
       style="cursor: pointer"
       class="list-group-item clearfix"
-      (click)="onSelected()"
+      [routerLink]="[index]"
+      routerLinkActive="border-primary"
     >
       <div class="float-start">
         <h4 class="list-group-item-heading">{{ recipe.name }}</h4>
@@ -29,12 +29,7 @@ import { RecipeService } from 'src/app/shared/recipe.service';
 })
 export class RecipeItemComponent implements OnInit {
   @Input() recipe: Recipe;
-
-  constructor(private recipeService: RecipeService) {}
+  @Input() index: number;
 
   ngOnInit() {}
-
-  onSelected() {
-    this.recipeService.recipeSelected.emit(this.recipe);
-  }
 }

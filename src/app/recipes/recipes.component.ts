@@ -7,18 +7,12 @@ import { RecipeService } from '../shared/recipe.service';
   template: `
     <!-- Seperator -->
     <hr class="divider py-1 my-1 bg-primary opacity-50" />
-    <div class="row">
+    <div class="row my-2">
       <div class="col-md-6">
         <app-recipe-list></app-recipe-list>
       </div>
       <div class="col-md-6">
-        <app-recipe-detail
-          *ngIf="selectedRecipe; else infoText"
-          [recipe]="selectedRecipe"
-        ></app-recipe-detail>
-        <ng-template #infoText>
-          <p class="text-secondary">No recipe selected</p>
-        </ng-template>
+        <router-outlet></router-outlet>
       </div>
     </div>
     <hr class="divider py-1 my-1 bg-primary opacity-50" />
