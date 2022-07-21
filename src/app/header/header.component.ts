@@ -68,7 +68,7 @@ import { Component } from '@angular/core';
               </a>
             </li>
           </ul>
-          <ul class="navbar-nav d-flex">
+          <ul class="navbar-nav d-flex" style="cursor: pointer">
             <li ngbDropdown class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" ngbDropdownToggle>Manage </a>
               <ul
@@ -77,12 +77,20 @@ import { Component } from '@angular/core';
                 style="right: 0; left: auto"
               >
                 <li>
-                  <a class="dropdown-item" href="#">💾 Save Data </a>
+                  <a class="dropdown-item" style="cursor: pointer"
+                    >💾 Save Data
+                  </a>
                 </li>
-                <li><a class="dropdown-item" href="#">🔄 Fetch Data</a></li>
+                <li>
+                  <a class="dropdown-item" style="cursor: pointer"
+                    >🔄 Fetch Data</a
+                  >
+                </li>
                 <li><hr class="dropdown-divider" /></li>
                 <li>
-                  <a class="dropdown-item" href="#">Something else here</a>
+                  <a class="dropdown-item" style="cursor: pointer"
+                    >Something else here</a
+                  >
                 </li>
               </ul>
             </li>

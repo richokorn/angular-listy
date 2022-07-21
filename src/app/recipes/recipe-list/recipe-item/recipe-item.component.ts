@@ -6,7 +6,11 @@ import { RecipeService } from 'src/app/shared/recipe.service';
   selector: 'app-recipe-item',
   template: `
     <!-- Seperator -->
-    <a href="#" class="list-group-item clearfix" (click)="onSelected()">
+    <a
+      style="cursor: pointer"
+      class="list-group-item clearfix"
+      (click)="onSelected()"
+    >
       <div class="float-start">
         <h4 class="list-group-item-heading">{{ recipe.name }}</h4>
         <p class="list-group-item-text mb-0">{{ recipe.description }}</p>

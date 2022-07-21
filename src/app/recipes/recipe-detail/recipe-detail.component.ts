@@ -29,17 +29,19 @@ import { RecipeService } from 'src/app/shared/recipe.service';
             <li>
               <a
                 class="dropdown-item"
-                style="cursor: pointer;"
+                style="cursor: pointer"
                 (click)="onAddToShoppingList()"
               >
                 ✔ Add Ingredients to Shopping List</a
               >
             </li>
             <li>
-              <a class="dropdown-item" href="#">✏ Edit Recipe</a>
+              <a class="dropdown-item" style="cursor: pointer">✏ Edit Recipe</a>
             </li>
             <li>
-              <a class="dropdown-item" href="#">❌ Delete Recipe</a>
+              <a class="dropdown-item" style="cursor: pointer"
+                >❌ Delete Recipe</a
+              >
             </li>
           </ul>
         </div>
