@@ -49,15 +49,14 @@ import { RecipeService } from 'src/app/shared/recipe.service';
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-12">
-        <h1>{{ recipe.name }}</h1>
+      <div class="col-xs-12 m-2">
+        <h2 class="mb-1">{{ recipe.name }}</h2>
+        <span class="mt-0 text-muted">
+          {{ recipe.description }}
+        </span>
       </div>
     </div>
-    <div class="row">
-      <div class="col-xs-12">
-        {{ recipe.description }}
-      </div>
-    </div>
+    <div class="row"></div>
     <div class="row">
       <div class="col-xs-12">
         <ul class="list-group">
@@ -66,10 +65,11 @@ import { RecipeService } from 'src/app/shared/recipe.service';
             *ngFor="let ingredient of recipe.ingredients"
           >
             <span
-              class="badge badge-pill bg-primary me-2 float-start"
-              style="min-width: min-content; width: 4vw"
+              class="badge badge-pill bg-primary me-2"
+              style="width: 100px"
             >
-              {{ ingredient.amount }} {{ ingredient.unit }}</span
+              {{ ingredient.amount }}
+              {{ ingredient.unit }}</span
             >
             <span>{{ ingredient.name }}</span>
           </li>

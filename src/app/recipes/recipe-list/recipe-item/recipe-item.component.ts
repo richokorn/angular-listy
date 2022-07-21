@@ -7,21 +7,24 @@ import { Recipe } from 'src/app/shared/recipe.model';
     <!-- Seperator -->
     <a
       style="cursor: pointer"
-      class="list-group-item clearfix"
+      class="list-group-item  clearfix"
       [routerLink]="[index]"
       routerLinkActive="border-primary"
     >
-      <div class="float-start">
-        <h4 class="list-group-item-heading">{{ recipe.name }}</h4>
-        <p class="list-group-item-text mb-0">{{ recipe.description }}</p>
-      </div>
-      <div class="float-end">
-        <img
-          src="{{ recipe.imagePath }}"
-          alt="{{ recipe.name }}"
-          class="img-responsive"
-          style="max-height: 65px"
-        />
+      <div class="d-flex my-1">
+        <div class="float-start w-100">
+          <h5 class="mb-1 text-break">{{ recipe.name }}</h5>
+          <span class="mt-0 text-muted text-break">
+            {{ recipe.description }}
+          </span>
+        </div>
+        <div class="float-end mx-2">
+          <img
+            src="{{ recipe.imagePath }}"
+            alt="{{ recipe.name }}"
+            style="max-height: 65px;"
+          />
+        </div>
       </div>
     </a>
     <!-- Seperator -->
