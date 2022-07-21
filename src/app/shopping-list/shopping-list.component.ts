@@ -6,6 +6,7 @@ import { ShoppingListService } from '../shared/shopping-list.service';
   selector: 'app-shopping-list',
   template: `
     <!-- Seperator -->
+    <hr class="divider py-1 my-1 bg-success" />
     <div class="row">
       <div class="col-xs-12 my-2">
         <app-shopping-edit></app-shopping-edit>
@@ -33,6 +34,7 @@ import { ShoppingListService } from '../shared/shopping-list.service';
         </ul>
       </div>
     </div>
+    <hr class="divider py-1 my-1 bg-success" />
     <!-- Seperator -->
   `,
 })

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -23,12 +23,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
             <li class="nav-item m-1">
               <div>
                 <hr class="divider py-1 bg-primary my-0" />
-                <a
-                  class="nav-link bg-blue-100"
-                  (click)="onSelect('recipe')"
-                  aria-current="page"
-                  href="#"
-                >
+                <a class="nav-link bg-blue-100" routerLink="/recipes">
                   Recipes</a
                 >
                 <hr class="divider py-1 bg-primary my-0" />
@@ -37,7 +32,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
             <li class="nav-item m-1">
               <div>
                 <hr class="divider py-1 bg-success my-0" />
-                <a class="nav-link" (click)="onSelect('shopping-list')" href="#"
+                <a class="nav-link" routerLink="/shopping-list"
                   >Shopping List</a
                 >
                 <hr class="divider py-1 bg-success my-0" />
@@ -46,23 +41,21 @@ import { Component, EventEmitter, Output } from '@angular/core';
             <li class="nav-item m-1">
               <div>
                 <hr class="divider py-1 bg-secondary my-0" />
-                <a class="nav-link" href="#">Dummy Item 1</a>
+                <a class="nav-link">Dummy Item 1</a>
                 <hr class="divider py-1 bg-secondary my-0" />
               </div>
             </li>
             <li class="nav-item m-1">
               <div>
                 <hr class="divider py-1 bg-danger my-0" />
-                <a class="nav-link" href="#">Dummy Item 2</a>
+                <a class="nav-link">Dummy Item 2</a>
                 <hr class="divider py-1 bg-danger my-0" />
               </div>
             </li>
           </ul>
           <ul class="navbar-nav d-flex">
             <li ngbDropdown class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" ngbDropdownToggle>
-                Manage
-              </a>
+              <a class="nav-link dropdown-toggle" ngbDropdownToggle> Manage </a>
               <ul
                 ngbDropdownMenu
                 class="dropdown-menu"
@@ -87,11 +80,4 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class HeaderComponent {
   public isMenuCollapsed = true;
-
-  @Output() featureSelected = new EventEmitter<string>();
-  onSelect(feature: string) {
-    this.featureSelected.emit(feature);
-  }
-
-  constructor() {}
 }
