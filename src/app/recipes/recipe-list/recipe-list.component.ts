@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RecipeService } from 'src/app/shared/recipe.service';
 import { Recipe } from '../../shared/recipe.model';
 
@@ -8,7 +9,9 @@ import { Recipe } from '../../shared/recipe.model';
     <!-- Seperator -->
     <div class="row">
       <div class="col-xs-12">
-        <button class="btn w-100 btn-primary mt-2">New Recipe</button>
+        <button class="btn w-100 btn-primary mt-2" (click)="onNewRecipe()">
+          New Recipe
+        </button>
       </div>
     </div>
     <div class="row">
@@ -27,9 +30,17 @@ import { Recipe } from '../../shared/recipe.model';
 export class RecipeListComponent implements OnInit {
   recipes: Recipe[];
 
-  constructor(private recipeService: RecipeService) {}
+  constructor(
+    private recipeService: RecipeService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.recipes = this.recipeService.getRecipes();
+  }
+
+  onNewRecipe() {
+    this.router.navigate(['new'], { relativeTo: this.route });
   }
 }

@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `
     <!-- Seperator -->
-    <app-header (featureSelected)="onNavigate($event)"></app-header>
+    <app-header></app-header>
     <div class="container">
       <div class="row">
         <div class="col-md-12 mt-2">

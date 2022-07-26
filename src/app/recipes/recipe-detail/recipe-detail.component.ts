@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Recipe } from 'src/app/shared/recipe.model';
 import { RecipeService } from 'src/app/shared/recipe.service';
 
@@ -37,7 +37,13 @@ import { RecipeService } from 'src/app/shared/recipe.service';
               >
             </li>
             <li>
-              <a class="dropdown-item" style="cursor: pointer">✏ Edit Recipe</a>
+              <a
+                class="dropdown-item"
+                style="cursor: pointer"
+                routerLink="/edit"
+                (click)="OnEditRecipe()"
+                >✏ Edit Recipe</a
+              >
             </li>
             <li>
               <a class="dropdown-item" style="cursor: pointer"
@@ -64,10 +70,7 @@ import { RecipeService } from 'src/app/shared/recipe.service';
             class="list-group-item"
             *ngFor="let ingredient of recipe.ingredients"
           >
-            <span
-              class="badge badge-pill bg-primary me-2"
-              style="width: 100px"
-            >
+            <span class="badge badge-pill bg-primary me-2" style="width: 100px">
               {{ ingredient.amount }}
               {{ ingredient.unit }}</span
             >
@@ -86,6 +89,7 @@ export class RecipeDetailComponent implements OnInit {
 
   constructor(
     private recipeService: RecipeService,
+    private router: Router,
     private route: ActivatedRoute
   ) {}
 
@@ -98,5 +102,9 @@ export class RecipeDetailComponent implements OnInit {
 
   onAddToShoppingList() {
     this.recipeService.addIngredientsToShoppingList(this.recipe.ingredients);
+  }
+
+  OnEditRecipe() {
+    this.router.navigate(['../', this.id, 'edit'], { relativeTo: this.route });
   }
 }
