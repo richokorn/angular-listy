@@ -9,6 +9,10 @@ export class ShoppingListService {
     new Ingredient('Tomatoes', 10, 'pcs'),
   ];
 
+  getIngredient(index: number) {
+    return this.ingredients[index];
+  }
+
   getIngredients() {
     return this.ingredients.slice();
   }
@@ -37,15 +41,6 @@ export class ShoppingListService {
     this.ingredientsChanged.next(this.ingredients.slice());
   }
 
-  getIngredient(index: number) {
-    return this.ingredients[index];
-  }
-
-  deleteIngredient(ingredient: Ingredient) {
-    this.ingredients.splice(this.ingredients.indexOf(ingredient), 1);
-    this.ingredientsChanged.next(this.ingredients.slice());
-  }
-
   addIngredients(ingredients: Ingredient[]) {
     // if the ingredients array is empty, then add the new ingredients
     if (this.ingredients.length === 0) {
@@ -68,5 +63,15 @@ export class ShoppingListService {
       }
       this.ingredientsChanged.next(this.ingredients.slice());
     }
+  }
+
+  deleteIngredient(ingredient: Ingredient) {
+    this.ingredients.splice(this.ingredients.indexOf(ingredient), 1);
+    this.ingredientsChanged.next(this.ingredients.slice());
+  }
+
+  updateIngredient(index: number, newIngredient: Ingredient) {
+    this.ingredients[index] = newIngredient;
+    this.ingredientsChanged.next(this.ingredients.slice());
   }
 }

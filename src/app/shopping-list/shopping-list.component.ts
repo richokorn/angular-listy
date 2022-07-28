@@ -13,11 +13,20 @@ import { ShoppingListService } from '../shared/shopping-list.service';
         <app-shopping-edit></app-shopping-edit>
         <hr />
         <ul class="list-group">
+          <!--
+            we want a border when a specific ingredient is selected
+
+-->
           <a
             class="list-group-item"
             style="cursor: pointer"
             *ngFor="let ingredient of ingredients; let i = index"
             (click)="onEditItem(i)"
+            [ngClass]="
+              i === (this.shoppingListService.startedEditing | async)
+                ? 'list-group-item-success'
+                : ''
+            "
           >
             <span class="badge badge-pill bg-success" style="width: 100px">
               {{ ingredient.amount }} {{ ingredient.unit }}</span

@@ -1,4 +1,11 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnDestroy,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Ingredient } from 'src/app/shared/ingredient.model';
@@ -56,15 +63,24 @@ import { ShoppingListService } from 'src/app/shared/shopping-list.service';
             <div class="col-xs-12">
               <button
                 type="submit"
-                class="btn my-3 me-2 btn-success"
+                class="btn my-3 me-2"
+                [ngClass]="editMode ? 'btn btn-warning' : 'btn btn-success'"
                 [disabled]="!f.valid"
               >
-                Add
+                {{ editMode ? 'Update' : 'Add' }}
               </button>
-              <button type="button" class="btn my-3 me-2 btn-danger">
+              <button
+                type="button"
+                class="btn my-3 me-2 btn-danger"
+                (click)="onDeleteItem(editedItem)"
+              >
                 Delete
               </button>
-              <button type="button" class="btn my-3 me-2 btn-primary">
+              <button
+                type="button"
+                class="btn my-3 me-2 btn-primary"
+                (click)="onClear()"
+              >
                 Clear
               </button>
             </div>
@@ -102,7 +118,25 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   onAddItem(form: NgForm) {
     const value = form.value;
     const newIngredient = new Ingredient(value.name, value.amount, value.unit);
-    this.shoppingListService.addIngredient(newIngredient);
+    if (this.editMode) {
+      this.shoppingListService.updateIngredient(
+        this.editedItemIndex,
+        newIngredient
+      );
+    } else {
+      this.shoppingListService.addIngredient(newIngredient);
+    }
+    this.editMode = false;
+    form.reset();
+  }
+
+  onClear() {
+    this.slForm.reset();
+    this.editMode = false;
+  }
+
+  onDeleteItem(editedItem) {
+    this.shoppingListService.deleteIngredient(editedItem);
   }
 
   ngOnDestroy(): void {
