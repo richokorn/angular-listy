@@ -7,22 +7,13 @@ import { RecipeService } from 'src/app/shared/recipe.service';
   selector: 'app-recipe-detail',
   template: `
     <!-- Seperator -->
-    <div class="row">
-      <div class="col-xs-12 my-2" style="max-height: 175px; overflow: hidden;">
-        <img
-          [src]="recipe.imagePath"
-          alt="{{ recipe.name }}"
-          class="img-fluid w-100"
-          style="transform: translateY(-50%);"
-        />
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <div ngbDropdown class="dropdown">
+
+    <div class="row ">
+      <div class="col-xs-12 ">
+        <div ngbDropdown class="dropdown ">
           <button
             ngbDropdownToggle
-            class="btn w-100 btn-primary dropdown-toggle my-2"
+            class="btn w-100 list-group-item-primary dropdown-toggle my-2"
           >
             Manage Recipe
           </button>
@@ -46,12 +37,26 @@ import { RecipeService } from 'src/app/shared/recipe.service';
               >
             </li>
             <li>
-              <a class="dropdown-item" style="cursor: pointer"
-                >❌ Delete Recipe</a
+              <a
+                class="dropdown-item"
+                style="cursor: pointer"
+                (click)="onDeleteRecipe()"
+              >
+                ❌ Delete Recipe</a
               >
             </li>
           </ul>
         </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 my-2" style="max-height: 175px; overflow: hidden;">
+        <img
+          [src]="recipe.imagePath"
+          alt="{{ recipe.name }}"
+          class="img-fluid w-100"
+          style="transform: translateY(-33%);"
+        />
       </div>
     </div>
     <div class="row">
@@ -77,10 +82,9 @@ import { RecipeService } from 'src/app/shared/recipe.service';
             <span>{{ ingredient.name }}</span>
           </li>
         </ul>
-
-        <!-- Seperator -->
       </div>
     </div>
+    <!-- Seperator -->
   `,
 })
 export class RecipeDetailComponent implements OnInit {
@@ -106,5 +110,10 @@ export class RecipeDetailComponent implements OnInit {
 
   OnEditRecipe() {
     this.router.navigate(['../', this.id, 'edit'], { relativeTo: this.route });
+  }
+
+  onDeleteRecipe() {
+    this.recipeService.deleteRecipe(this.id);
+    this.router.navigate(['/recipes']);
   }
 }

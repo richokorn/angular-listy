@@ -17,7 +17,7 @@ import { ShoppingListService } from 'src/app/shared/shopping-list.service';
     <!-- Seperator -->
     <div class="row">
       <div class="col-xs-12">
-        <form (ngSubmit)="onAddItem(f)" #f="ngForm">
+        <form (ngSubmit)="onSubmit(f)" #f="ngForm">
           <div class="row">
             <div class="col-sm-7 form-group">
               <label class="my-1" for="name">Ingredient</label>
@@ -73,6 +73,7 @@ import { ShoppingListService } from 'src/app/shared/shopping-list.service';
                 type="button"
                 class="btn my-3 me-2 btn-danger"
                 (click)="onDeleteItem(editedItem)"
+                *ngIf="editMode"
               >
                 Delete
               </button>
@@ -80,6 +81,7 @@ import { ShoppingListService } from 'src/app/shared/shopping-list.service';
                 type="button"
                 class="btn my-3 me-2 btn-primary"
                 (click)="onClear()"
+                [disabled]="f.pristine && editMode === false"
               >
                 Clear
               </button>
@@ -115,7 +117,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
     );
   }
 
-  onAddItem(form: NgForm) {
+  onSubmit(form: NgForm) {
     const value = form.value;
     const newIngredient = new Ingredient(value.name, value.amount, value.unit);
     if (this.editMode) {

@@ -7,7 +7,7 @@ import { Recipe } from 'src/app/shared/recipe.model';
     <!-- Seperator -->
     <a
       style="cursor: pointer"
-      class="list-group-item  clearfix"
+      class="list-group-item clearfix my-2"
       [routerLink]="[index]"
       routerLinkActive="border-primary"
     >
@@ -35,4 +35,5 @@ export class RecipeItemComponent implements OnInit {
   @Input() index: number;
 
   ngOnInit() {}
+
 }
