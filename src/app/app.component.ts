@@ -24,8 +24,4 @@ export class AppComponent {
   title = 'angular-listy';
   loadedFeature = 'recipe';
   // value = 5; // <-- value of ngSwitch
-
-  onNavigate(feature: string) {
-    this.loadedFeature = feature;
-  }
 }

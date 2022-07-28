@@ -1,8 +1,9 @@
-import { EventEmitter } from '@angular/core';
+import { Subject } from 'rxjs';
 import { Ingredient } from './ingredient.model';
 
 export class ShoppingListService {
-  ingredientsChanged = new EventEmitter<Ingredient[]>();
+  ingredientsChanged = new Subject<Ingredient[]>();
+  startedEditing = new Subject<number>();
   private ingredients: Ingredient[] = [
     new Ingredient('Pizza Dough', 250, 'g'),
     new Ingredient('Tomatoes', 10, 'pcs'),
@@ -33,19 +34,23 @@ export class ShoppingListService {
         this.ingredients.push(ingredient);
       }
     }
-    this.ingredientsChanged.emit(this.ingredients.slice());
+    this.ingredientsChanged.next(this.ingredients.slice());
+  }
+
+  getIngredient(index: number) {
+    return this.ingredients[index];
   }
 
   deleteIngredient(ingredient: Ingredient) {
     this.ingredients.splice(this.ingredients.indexOf(ingredient), 1);
-    this.ingredientsChanged.emit(this.ingredients.slice());
+    this.ingredientsChanged.next(this.ingredients.slice());
   }
 
   addIngredients(ingredients: Ingredient[]) {
     // if the ingredients array is empty, then add the new ingredients
     if (this.ingredients.length === 0) {
       this.ingredients.push(...ingredients);
-      this.ingredientsChanged.emit(this.ingredients.slice());
+      this.ingredientsChanged.next(this.ingredients.slice());
     }
     // if the ingredients array is not empty, then check if the new ingredients are already in the array
     else {
@@ -61,7 +66,7 @@ export class ShoppingListService {
           this.ingredients.push(ingredient);
         }
       }
-      this.ingredientsChanged.emit(this.ingredients.slice());
+      this.ingredientsChanged.next(this.ingredients.slice());
     }
   }
 }

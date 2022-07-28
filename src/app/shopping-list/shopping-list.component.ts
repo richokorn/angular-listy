@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from '../shared/shopping-list.service';
 
@@ -15,12 +16,10 @@ import { ShoppingListService } from '../shared/shopping-list.service';
           <a
             class="list-group-item"
             style="cursor: pointer"
-            *ngFor="let ingredient of ingredients"
+            *ngFor="let ingredient of ingredients; let i = index"
+            (click)="onEditItem(i)"
           >
-            <span
-              class="badge badge-pill bg-success"
-              style="min-width: min-content; width: 4vw"
-            >
+            <span class="badge badge-pill bg-success" style="width: 100px">
               {{ ingredient.amount }} {{ ingredient.unit }}</span
             >
             <span
@@ -38,14 +37,15 @@ import { ShoppingListService } from '../shared/shopping-list.service';
     <!-- Seperator -->
   `,
 })
-export class ShoppingListComponent implements OnInit {
+export class ShoppingListComponent implements OnInit, OnDestroy {
   ingredients: Ingredient[];
+  private igChangeSub: Subscription;
 
   constructor(private shoppingListService: ShoppingListService) {}
 
   ngOnInit() {
     this.ingredients = this.shoppingListService.getIngredients();
-    this.shoppingListService.ingredientsChanged.subscribe(
+    this.igChangeSub = this.shoppingListService.ingredientsChanged.subscribe(
       (ingredients: Ingredient[]) => {
         this.ingredients = ingredients;
       }
@@ -54,5 +54,13 @@ export class ShoppingListComponent implements OnInit {
 
   deleteIngredient(ingredient: Ingredient) {
     this.shoppingListService.deleteIngredient(ingredient);
+  }
+
+  onEditItem(index: number) {
+    this.shoppingListService.startedEditing.next(index);
+  }
+
+  ngOnDestroy(): void {
+    this.igChangeSub.unsubscribe();
   }
 }
