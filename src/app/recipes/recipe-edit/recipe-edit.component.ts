@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { RecipeService } from 'src/app/shared/recipe.service';
 
@@ -81,10 +81,10 @@ import { RecipeService } from 'src/app/shared/recipe.service';
           <div class="row">
             <div class="col-xs-12">
               <div class="row">
-                <div class="col-6">
+                <div class="col-5">
                   <label class="my-1">Ingredient</label>
                 </div>
-                <div class="col-2">
+                <div class="col-3">
                   <label class="my-1">Amount</label>
                 </div>
                 <div class="col-2">
@@ -103,14 +103,14 @@ import { RecipeService } from 'src/app/shared/recipe.service';
                 *ngFor="let ingredientCtrl of controls; let i = index"
                 [formGroupName]="i"
               >
-                <div class="col-6 my-1">
+                <div class="col-5 my-1 pe-0">
                   <input
                     class="form-control"
                     formControlName="name"
                     type="text"
                   />
                 </div>
-                <div class="col-2 my-1">
+                <div class="col-3 my-1 pe-0">
                   <input
                     class="form-control"
                     formControlName="amount"
@@ -118,7 +118,7 @@ import { RecipeService } from 'src/app/shared/recipe.service';
                     type="number"
                   />
                 </div>
-                <div class="col-2 my-1">
+                <div class="col-2 my-1 pe-0">
                   <select
                     class="form-control"
                     formControlName="unit"
@@ -131,9 +131,9 @@ import { RecipeService } from 'src/app/shared/recipe.service';
                     <option style="cursor: pointer">pcs</option>
                   </select>
                 </div>
-                <div class="col-1 my-1">
+                <div class="d-flex col-1 my-1 align-items-center">
                   <button
-                    class="badge btn btn-danger"
+                    class="badge pill btn btn-danger"
                     type="button"
                     (click)="onRemoveIngredient(i)"
                   >
@@ -143,7 +143,7 @@ import { RecipeService } from 'src/app/shared/recipe.service';
               </div>
               <button
                 type="button"
-                class="btn list-group-item-primary"
+                class="btn list-group-item-primary my-2 "
                 (click)="onAddIngredient()"
               >
                 ➕ Add Ingredient
@@ -203,9 +203,12 @@ export class RecipeEditComponent implements OnInit {
   onAddIngredient() {
     (<FormArray>this.recipeForm.get('ingredients')).push(
       new FormGroup({
-        name: new FormControl(),
-        amount: new FormControl(),
-        unit: new FormControl(),
+        name: new FormControl(null, Validators.required),
+        amount: new FormControl(null, [
+          Validators.required,
+          Validators.pattern(/^[1-9]+[0-9]*$/),
+        ]), // only numbers, no decimals
+        unit: new FormControl(null, Validators.required),
       })
     );
   }
@@ -230,8 +233,11 @@ export class RecipeEditComponent implements OnInit {
         for (let ingredient of recipe.ingredients) {
           recipeIngredients.push(
             new FormGroup({
-              name: new FormControl(ingredient.name),
-              amount: new FormControl(ingredient.amount),
+              name: new FormControl(ingredient.name, Validators.required),
+              amount: new FormControl(ingredient.amount, [
+                Validators.required,
+                Validators.pattern('^[1-9]+[0-9]*$'),
+              ]),
               unit: new FormControl(ingredient.unit),
             })
           );
@@ -240,9 +246,9 @@ export class RecipeEditComponent implements OnInit {
     }
 
     this.recipeForm = new FormGroup({
-      name: new FormControl(recipeName),
-      description: new FormControl(recipeDescription),
-      imagePath: new FormControl(recipeImagePath),
+      name: new FormControl(recipeName, Validators.required),
+      description: new FormControl(recipeDescription, Validators.required),
+      imagePath: new FormControl(recipeImagePath, Validators.required),
       ingredients: recipeIngredients,
     });
   }
