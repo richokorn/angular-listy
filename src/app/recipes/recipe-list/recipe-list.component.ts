@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { RecipeService } from 'src/app/shared/recipe.service';
 import { Recipe } from '../../shared/recipe.model';
 
@@ -26,8 +27,9 @@ import { Recipe } from '../../shared/recipe.model';
     <!-- Seperator -->
   `,
 })
-export class RecipeListComponent implements OnInit {
+export class RecipeListComponent implements OnInit, OnDestroy {
   recipes: Recipe[];
+  rsChangeSub: Subscription;
 
   constructor(
     private recipeService: RecipeService,
@@ -37,14 +39,18 @@ export class RecipeListComponent implements OnInit {
 
   ngOnInit() {
     this.recipes = this.recipeService.getRecipes();
+    this.rsChangeSub = this.recipeService.recipesChanged.subscribe(
+      (recipes: Recipe[]) => {
+        this.recipes = recipes;
+      }
+    );
   }
 
   onNewRecipe() {
     this.router.navigate(['new'], { relativeTo: this.route });
   }
 
-  ngOnChange() {
-    // we need to subscribe to the list of recipes so they update in real time
-    this.recipes = this.recipeService.getRecipes();
+  ngOnDestroy(): void {
+    this.recipeService.recipesChanged.unsubscribe();
   }
 }
