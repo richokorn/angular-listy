@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { RecipeService } from '../shared/recipe.service';
 
 @Component({
   selector: 'app-recipes',
@@ -17,7 +16,6 @@ import { RecipeService } from '../shared/recipe.service';
     <hr class="divider py-1 my-1 bg-primary opacity-50" />
     <!-- Seperator -->
   `,
-  providers: [RecipeService],
 })
 export class RecipesComponent implements OnInit {
   constructor() {}

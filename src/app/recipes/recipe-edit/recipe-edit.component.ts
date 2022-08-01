@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Recipe } from 'src/app/shared/recipe.model';
 import { RecipeService } from 'src/app/shared/recipe.service';
 
 @Component({
@@ -32,7 +33,11 @@ import { RecipeService } from 'src/app/shared/recipe.service';
           <div class="row my-3">
             <div class="col-xs-12" style="max-height: 175px; overflow: hidden;">
               <img
-                src="{{ recipeImagePath }}"
+                [src]="
+                  imagePath.value
+                    ? imagePath.value
+                    : 'https://i.pinimg.com/originals/69/bc/e3/69bce348d5d4d65c3063e4fb38a75f74.png'
+                "
                 class="img-fluid w-100"
                 style="transform: translateY(-33%);"
               />
@@ -47,6 +52,7 @@ import { RecipeService } from 'src/app/shared/recipe.service';
                   id="imagePath"
                   formControlName="imagePath"
                   class="form-control"
+                  #imagePath
                 />
               </div>
             </div>
@@ -155,6 +161,14 @@ import { RecipeService } from 'src/app/shared/recipe.service';
     </div>
     <!-- Seperator -->
   `,
+  styles: [
+    `
+      input.ng-invalid.ng-touched,
+      textarea.ng-invalid.ng-touched {
+        border-color: red;
+      }
+    `,
+  ],
 })
 export class RecipeEditComponent implements OnInit {
   id: number;
@@ -182,22 +196,22 @@ export class RecipeEditComponent implements OnInit {
     return (<FormArray>this.recipeForm.get('ingredients')).controls;
   }
 
-  onSubmit() {
-    if (this.editMode) {
-      this.recipeService.updateRecipe(this.id, this.recipeForm.value);
-      // now we want to go back to the recipe list using the router
-      this.editMode = false;
-      this.router.navigate(['../'], { relativeTo: this.route });
-    } else {
-      this.recipeService.addRecipe(this.recipeForm.value);
-      this.editMode = false;
-      this.router.navigate(['../'], { relativeTo: this.route });
-    }
-  }
-
   onCancel() {
     this.editMode = false;
     this.router.navigate(['../'], { relativeTo: this.route });
+  }
+
+  onSubmit() {
+    if (this.editMode) {
+      this.recipeService.updateRecipe(this.id, this.recipeForm.value);
+      this.editMode = false;
+      // now we want to go back to the recipe list using the router
+      this.onCancel();
+    } else {
+      this.recipeService.addRecipe(this.recipeForm.value);
+      this.editMode = false;
+      this.onCancel();
+    }
   }
 
   onAddIngredient() {
@@ -219,8 +233,7 @@ export class RecipeEditComponent implements OnInit {
 
   private initForm() {
     let recipeName = '';
-    let recipeImagePath =
-      'http://www.eatdrinkcheap.com.au/images/streetview.jpg';
+    let recipeImagePath = '';
     let recipeDescription = '';
     let recipeIngredients = new FormArray([]);
 
@@ -236,8 +249,8 @@ export class RecipeEditComponent implements OnInit {
               name: new FormControl(ingredient.name, Validators.required),
               amount: new FormControl(ingredient.amount, [
                 Validators.required,
-                Validators.pattern('^[1-9]+[0-9]*$'),
-              ]),
+                Validators.pattern(/^[1-9]+[0-9]*$/),
+              ]), // only numbers, no decimals
               unit: new FormControl(ingredient.unit),
             })
           );
