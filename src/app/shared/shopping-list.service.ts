@@ -74,4 +74,8 @@ export class ShoppingListService {
     this.ingredients[index] = newIngredient;
     this.ingredientsChanged.next(this.ingredients.slice());
   }
+
+  clearEditMode() {
+    this.startedEditing.next(-1);
+  }
 }

@@ -83,7 +83,7 @@ import { ShoppingListService } from 'src/app/shared/shopping-list.service';
                 (click)="onClear()"
                 [disabled]="f.pristine && editMode === false"
               >
-                Clear
+                Cancel
               </button>
             </div>
           </div>
@@ -134,6 +134,8 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
 
   onClear() {
     this.slForm.reset();
+    this.shoppingListService.clearEditMode();
+
     this.editMode = false;
   }
 
