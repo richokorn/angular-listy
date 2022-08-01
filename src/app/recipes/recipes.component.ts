@@ -26,3 +26,5 @@ export class RecipesComponent implements OnInit {
     // ngOnInit placeholder
   }
 }
+
+
