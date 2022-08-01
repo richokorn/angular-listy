@@ -18,7 +18,11 @@ import { Component, OnInit } from '@angular/core';
   `,
 })
 export class RecipesComponent implements OnInit {
-  constructor() {}
+  constructor() {
+    // constructor placeholder
+  }
 
-  ngOnInit() {}
+  ngOnInit(): void {
+    // ngOnInit placeholder
+  }
 }
