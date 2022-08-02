@@ -19,15 +19,12 @@ export class DataStorageService {
 
   fetchRecipes() {
     this.http.get<Recipe[]>(this.httpUrl).subscribe((recipes) => {
-
       // this.recipeService.setRecipes(recipes);
       // does not work, because the response is actually an object, not an array
-
 
       console.log(typeof recipes);
       // find the array we want in the object
       console.log(recipes);
-      console.log(recipes[0].name);
       console.log(Object.keys(recipes));
       console.log(recipes[Object.keys(recipes)[0]]);
 
