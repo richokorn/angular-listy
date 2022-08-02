@@ -66,7 +66,10 @@ import { DataStorageService } from '../shared/data-storage.service';
                   </a>
                 </li>
                 <li>
-                  <a class="dropdown-item" style="cursor: pointer"
+                  <a
+                    class="dropdown-item"
+                    (click)="onFetchData()"
+                    style="cursor: pointer"
                     >🔄 Fetch Data</a
                   >
                 </li>
@@ -92,5 +95,9 @@ export class HeaderComponent {
 
   onSaveData() {
     this.dataStorageService.storeRecipes();
+  }
+
+  onFetchData() {
+    this.dataStorageService.fetchRecipes();
   }
 }

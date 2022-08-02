@@ -53,6 +53,11 @@ export class RecipeService {
     this.recipesChanged.next(this.recipes.slice());
   }
 
+  setRecipes(recipes: Recipe[]) {
+    this.recipes = recipes;
+    this.recipesChanged.next(this.recipes.slice());
+  }
+
   addIngredientsToShoppingList(ingredients: Ingredient[]) {
     this.shoppingListService.addIngredients(ingredients);
   }
@@ -64,4 +69,5 @@ export class RecipeService {
     // now set the array of recipes equal to the new array of recipes
     this.recipes = this.recipes.splice(index, 1);
   }
+
 }

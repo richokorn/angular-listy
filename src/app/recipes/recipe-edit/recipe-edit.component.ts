@@ -34,8 +34,8 @@ import { RecipeService } from 'src/app/shared/recipe.service';
             <div class="col-xs-12" style="max-height: 175px; overflow: hidden;">
               <img
                 [src]="
-                  imagePath.value
-                    ? imagePath.value
+                  recipeImagePath
+                    ? recipeImagePath
                     : 'https://i.pinimg.com/originals/69/bc/e3/69bce348d5d4d65c3063e4fb38a75f74.png'
                 "
                 class="img-fluid w-100"
@@ -189,6 +189,10 @@ export class RecipeEditComponent implements OnInit {
       this.initForm();
       this.recipeImagePath = this.recipeService.getRecipe(this.id).imagePath;
     });
+  }
+
+  ngOnChange() {
+    this.recipeImagePath = this.recipeService.getRecipe(this.id).imagePath;
   }
 
   get controls() {
