@@ -47,26 +47,6 @@ import { Component } from '@angular/core';
                 />
               </a>
             </li>
-            <!-- <li class="nav-item mx-0">
-              <a class="nav-link py-0" routerLink="##">
-                <hr class="my-1 py-1 bg-danger" routerLinkActive="opacity-50" />
-                <span class="px-3">Dummy 1</span>
-                <hr class="my-1 py-1 bg-danger" routerLinkActive="opacity-50" />
-              </a>
-            </li>
-            <li class="nav-item mx-0">
-              <a class="nav-link py-0" routerLink="##">
-                <hr
-                  class="my-1 py-1 bg-secondary"
-                  routerLinkActive="opacity-50"
-                />
-                <span class="px-3">Dummy 2</span>
-                <hr
-                  class="my-1 py-1 bg-secondary"
-                  routerLinkActive="opacity-50"
-                />
-              </a>
-            </li> -->
           </ul>
           <ul class="navbar-nav d-flex" style="cursor: pointer">
             <li ngbDropdown class="nav-item dropdown">
