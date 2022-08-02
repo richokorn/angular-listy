@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DataStorageService } from '../shared/data-storage.service';
 
 @Component({
   selector: 'app-header',
@@ -57,7 +58,10 @@ import { Component } from '@angular/core';
                 style="right: 0; left: auto"
               >
                 <li>
-                  <a class="dropdown-item" style="cursor: pointer"
+                  <a
+                    class="dropdown-item"
+                    (click)="onSaveData()"
+                    style="cursor: pointer"
                     >💾 Save Data
                   </a>
                 </li>
@@ -83,4 +87,10 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
   public isMenuCollapsed = true;
+
+  constructor(private dataStorageService: DataStorageService) {}
+
+  onSaveData() {
+    this.dataStorageService.storeRecipes();
+  }
 }
