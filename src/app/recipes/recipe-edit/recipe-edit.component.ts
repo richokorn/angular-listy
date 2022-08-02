@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Recipe } from 'src/app/shared/recipe.model';
 import { RecipeService } from 'src/app/shared/recipe.service';
 
 @Component({
@@ -224,7 +223,7 @@ export class RecipeEditComponent implements OnInit {
         name: new FormControl(null, Validators.required),
         amount: new FormControl(null, [
           Validators.required,
-          Validators.pattern(/^[1-9]+[0-9]*$/),
+          Validators.pattern(/^[1-9]+\d*$/),
         ]), // only numbers, no decimals
         unit: new FormControl(null, Validators.required),
       })
@@ -253,7 +252,7 @@ export class RecipeEditComponent implements OnInit {
               name: new FormControl(ingredient.name, Validators.required),
               amount: new FormControl(ingredient.amount, [
                 Validators.required,
-                Validators.pattern(/^[1-9]+[0-9]*$/),
+                Validators.pattern(/^[1-9]+\d*$/),
               ]), // only numbers, no decimals
               unit: new FormControl(ingredient.unit),
             })
