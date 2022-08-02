@@ -11,9 +11,8 @@ export class DataStorageService {
     'https://ng--complete-guide-8a1d7-default-rtdb.europe-west1.firebasedatabase.app/recipes.json';
 
   storeRecipes() {
-    const recipes = this.recipeService.getRecipes();
-    this.http.post(this.httpUrl, recipes).subscribe((response) => {
-      console.log('storeRecipes() response: ', response);
+    this.http.delete(this.httpUrl).subscribe(() => {
+      this.http.post(this.httpUrl, this.recipeService.getRecipes()).subscribe();
     });
   }
 
