@@ -2,17 +2,14 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-recipe-start',
-  template: `
-    <!-- Seperator -->
-    <div class="my-1">
-      <h1 class="text-muted">Welcome to Listy! 🍓</h1>
-      <h4>Create a new recipe or select an existing one.</h4>
-    </div>
-    <!-- Seperator -->
-  `,
+  templateUrl: './recipe-start.component.html',
 })
 export class RecipeStartComponent implements OnInit {
+  constructor() {
+    // constructor placeholder
+  }
+
   ngOnInit() {
-    return;
+    // ngOnInit placeholder
   }
 }

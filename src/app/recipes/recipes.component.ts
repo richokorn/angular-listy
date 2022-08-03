@@ -2,29 +2,14 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-recipes',
-  template: `
-    <!-- Seperator -->
-    <hr class="divider py-1 my-1 bg-primary opacity-50" />
-    <div class="row my-2">
-      <div class="col-md-5">
-        <app-recipe-list></app-recipe-list>
-      </div>
-      <div class="col-md-7">
-        <router-outlet></router-outlet>
-      </div>
-    </div>
-    <hr class="divider py-1 my-1 bg-primary opacity-50" />
-    <!-- Seperator -->
-  `,
+  templateUrl: './recipes.component.html',
 })
 export class RecipesComponent implements OnInit {
   constructor() {
     // constructor placeholder
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     // ngOnInit placeholder
   }
 }
-
-
