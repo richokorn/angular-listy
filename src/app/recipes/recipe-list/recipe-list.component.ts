@@ -6,26 +6,7 @@ import { Recipe } from '../../shared/recipe.model';
 
 @Component({
   selector: 'app-recipe-list',
-  template: `
-    <!-- Seperator -->
-    <div class="row">
-      <div class="col-xs-12">
-        <button class="btn w-100 btn-primary my-2" (click)="onNewRecipe()">
-          New Recipe
-        </button>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <app-recipe-item
-          *ngFor="let recipeElement of recipes; let i = index"
-          [recipe]="recipeElement"
-          [index]="i"
-        ></app-recipe-item>
-      </div>
-    </div>
-    <!-- Seperator -->
-  `,
+  templateUrl: './recipe-list.component.html',
 })
 export class RecipeListComponent implements OnInit, OnDestroy {
   recipes: Recipe[];
