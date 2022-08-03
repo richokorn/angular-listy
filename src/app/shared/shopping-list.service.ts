@@ -19,17 +19,22 @@ export class ShoppingListService {
   }
 
   addIngredient(ingredient: Ingredient) {
-    // if the ingredients array is not empty, we need to check if the ingredient already exists
-    if (this.shoppingList.length > 0) {
-      const found = this.shoppingList.find((i) => i.name === ingredient.name);
-      if (found) {
-        found.amount += ingredient.amount; // if the ingredient already exists, we add the amount
-      } else {
-        this.shoppingList.push(ingredient); // if the ingredient does not exist, we push it to the array
-      }
-      // if the ingredients array is empty, we can just add the ingredient
-    } else {
+    // if the array is empty, just push the ingredient
+    if (this.shoppingList.length === 0) {
       this.shoppingList.push(ingredient);
+    } else {
+      // if the array is not empty, check if ingredient already exists
+      let ingredientExists = false;
+      this.shoppingList.forEach((i) => {
+        if (ingredient.name === i.name) {
+          // if it does, add the amount to existing ingredient on the shopping list
+          ingredientExists = true;
+          i.amount += ingredient.amount;
+        }
+      });
+      if (!ingredientExists) {
+        this.shoppingList.push({ ...ingredient });
+      }
     }
     this.ingredientsChanged.next(this.shoppingList.slice());
   }

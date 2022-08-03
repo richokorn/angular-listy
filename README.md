@@ -10,6 +10,7 @@
 - Always cross-reference the Udemy project's bootstrap codes with the current version of bootstrap, since so much breaks between 3 to 4 and again to 5
 - ie. from Bootstrap 4 -> 5, almost anything with a `left` or `right` suffix is now `start` and `end` to respect Right-To-Left accessibility.
 - Firebase returns an object, not an array of recipes as assumed. Needed to do a bit of Object/Array method magic to get the `.slice` method to work later.
+- When adding an recipe's ingredients to the shopping list, problems arose due to object-layer referencing and adding amounts together adding the amounts into the _original_ object _before_ applying it to the shopping list. This was solved by destructuring the `ingredient` layer with a spread operator. See `shared/shopping-list.service.ts -> addIngredient()`
 
 #### Development server
 
