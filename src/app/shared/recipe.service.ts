@@ -21,6 +21,18 @@ export class RecipeService {
       ]
     ),
     new Recipe(
+      'Caesar Salad',
+      'Healthy salad topped with croutons',
+      'https://natashaskitchen.com/wp-content/uploads/2019/01/Caesar-Salad-Recipe-3.jpg',
+      [
+        new Ingredient('Romaine Lettuce', 500, 'g'),
+        new Ingredient('Croutons', 50, 'g'),
+        new Ingredient('Parmesan Cheese, shaved', 50, 'g'),
+        new Ingredient('Poached Egg', 1, 'pcs'),
+        new Ingredient('Caesar Dressing', 50, 'ml'),
+      ]
+    ),
+    new Recipe(
       'Spaghetti Bolognese',
       'A taste of Italy in the comfort of your own home.',
       'https://thumbs.dreamstime.com/b/spaghetti-bolognese-black-serving-platter-fresh-basil-parmesan-44237816.jpg',
@@ -29,18 +41,6 @@ export class RecipeService {
         new Ingredient('Tomato Sauce', 250, 'ml'),
         new Ingredient('Mince Meat', 250, 'g'),
         new Ingredient('Mixed Italian Herbs', 50, 'g'),
-      ]
-    ),
-    new Recipe(
-      'Caesar Salad',
-      'Healthy salad topped with croutons',
-      'https://natashaskitchen.com/wp-content/uploads/2019/01/Caesar-Salad-Recipe-3.jpg',
-      [
-        new Ingredient('Romaine Lettuce', 1, 'pcs'),
-        new Ingredient('Croutons', 50, 'g'),
-        new Ingredient('Parmesan Cheese, shaved', 50, 'g'),
-        new Ingredient('Poached Egg', 1, 'pcs'),
-        new Ingredient('Caesar Dressing', 50, 'ml'),
       ]
     ),
   ];
