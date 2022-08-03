@@ -17,28 +17,16 @@
         <hr class="my-1 py-1 bg-white" />
         <li class="nav-item mx-0">
           <a class="nav-link py-0" routerLink="/recipes">
-            <hr
-              class="my-1 py-1 bg-primary"
-              routerLinkActive="opacity-50"
-            />
+            <hr class="my-1 py-1 bg-primary" routerLinkActive="opacity-50" />
             <span class="px-3">Recipes</span>
-            <hr
-              class="my-1 py-1 bg-primary"
-              routerLinkActive="opacity-50"
-            />
+            <hr class="my-1 py-1 bg-primary" routerLinkActive="opacity-50" />
           </a>
         </li>
         <li class="nav-item mx-0">
           <a class="nav-link py-0" routerLink="/shopping-list">
-            <hr
-              class="my-1 py-1 bg-success"
-              routerLinkActive="opacity-50"
-            />
+            <hr class="my-1 py-1 bg-success" routerLinkActive="opacity-50" />
             <span class="px-3">Shopping List</span>
-            <hr
-              class="my-1 py-1 bg-success"
-              routerLinkActive="opacity-50"
-            />
+            <hr class="my-1 py-1 bg-success" routerLinkActive="opacity-50" />
           </a>
         </li>
       </ul>
@@ -68,8 +56,8 @@
             </li>
             <li><hr class="dropdown-divider" /></li>
             <li>
-              <a class="dropdown-item" style="cursor: pointer"
-                >Something else here</a
+              <a class="dropdown-item" (click)="onLoadDummyData()" style="cursor: pointer"
+                >🍕 Load Dummy Data</a
               >
             </li>
           </ul>

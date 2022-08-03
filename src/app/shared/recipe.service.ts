@@ -7,7 +7,7 @@ import { ShoppingListService } from './shopping-list.service';
 @Injectable()
 export class RecipeService {
   recipesChanged = new Subject<Recipe[]>();
-  private recipes: Recipe[] = [
+  dummyRecipes: Recipe[] = [
     new Recipe(
       'Pizza Margherita',
       'Classic. Simple. Delicious.',
@@ -31,7 +31,21 @@ export class RecipeService {
         new Ingredient('Mixed Italian Herbs', 50, 'g'),
       ]
     ),
+    new Recipe(
+      'Caesar Salad',
+      'Healthy salad topped with croutons',
+      'https://natashaskitchen.com/wp-content/uploads/2019/01/Caesar-Salad-Recipe-3.jpg',
+      [
+        new Ingredient('Romaine Lettuce', 1, 'pcs'),
+        new Ingredient('Croutons', 50, 'g'),
+        new Ingredient('Parmesan Cheese, shaved', 50, 'g'),
+        new Ingredient('Poached Egg', 1, 'pcs'),
+        new Ingredient('Caesar Dressing', 50, 'ml'),
+      ]
+    ),
   ];
+
+  private recipes: Recipe[] = [];
 
   constructor(private shoppingListService: ShoppingListService) {}
 
@@ -60,6 +74,11 @@ export class RecipeService {
 
   setRecipes(recipes: Recipe[]) {
     this.recipes = recipes;
+    this.recipesChanged.next(this.recipes.slice());
+  }
+
+  setDummyRecipes() {
+    this.recipes = this.dummyRecipes.slice();
     this.recipesChanged.next(this.recipes.slice());
   }
 }

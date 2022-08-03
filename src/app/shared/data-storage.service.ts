@@ -48,4 +48,9 @@ export class DataStorageService {
         );
       });
   }
+
+  loadDummyData() {
+    this.recipeService.setDummyRecipes();
+    this.shoppingListService.setDummyIngredients();
+  }
 }

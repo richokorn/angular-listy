@@ -2,10 +2,12 @@ import { Subject } from 'rxjs';
 import { Ingredient } from './ingredient.model';
 
 export class ShoppingListService {
-  shoppingList: Ingredient[] = [
+  dummyShoppingList: Ingredient[] = [
     new Ingredient('Pizza Dough', 250, 'g'),
     new Ingredient('Tomato Sauce', 150, 'ml'),
   ];
+
+  shoppingList: Ingredient[] = [];
 
   ingredientsChanged = new Subject<Ingredient[]>();
   startedEditing = new Subject<number>();
@@ -51,6 +53,11 @@ export class ShoppingListService {
 
   setIngredients(ingredients: Ingredient[]) {
     this.shoppingList = ingredients;
+    this.ingredientsChanged.next(this.shoppingList.slice());
+  }
+
+  setDummyIngredients() {
+    this.shoppingList = this.dummyShoppingList.slice();
     this.ingredientsChanged.next(this.shoppingList.slice());
   }
 
