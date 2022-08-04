@@ -23,7 +23,7 @@ export class ShoppingListService {
   addIngredient(ingredient: Ingredient) {
     // if the array is empty, just push the ingredient
     if (this.shoppingList.length === 0) {
-      this.shoppingList.push(ingredient);
+      this.shoppingList.push({ ...ingredient });
     } else {
       // if the array is not empty, check if ingredient already exists
       let ingredientExists = false;
@@ -36,6 +36,9 @@ export class ShoppingListService {
       });
       if (!ingredientExists) {
         this.shoppingList.push({ ...ingredient });
+
+        // this.shoppingList.push(ingredient);
+        // this does not work because the ingredient is a reference so it will change the original ingredient's value instead of creating a new one, which is quite confusing
       }
     }
     this.ingredientsChanged.next(this.shoppingList.slice());
