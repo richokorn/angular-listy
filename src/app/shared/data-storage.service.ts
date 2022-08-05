@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs';
 import { Ingredient } from './ingredient.model';
 import { Recipe } from './recipe.model';
 import { RecipeService } from './recipe.service';
@@ -36,9 +37,22 @@ export class DataStorageService {
   }
 
   fetchData() {
-    this.http.get<Recipe[]>(this.recipesHttpUrl).subscribe((recipes) => {
-      this.recipeService.setRecipes(recipes[Object.keys(recipes)[0]]);
-    });
+    this.http
+      .get<Recipe[]>(this.recipesHttpUrl)
+      .pipe(
+        map((recipes) => {
+          return recipes[Object.keys(recipes)[0]].map((recipe) => {
+            return {
+              ...recipe,
+              ingredients: recipe.ingredients ? recipe.ingredients : [],
+            };
+          });
+        })
+      )
+      .subscribe((recipes) => {
+        console.log('data-storage.service.ts', recipes);
+        this.recipeService.setRecipes(recipes);
+      });
 
     this.http
       .get<Ingredient[]>(this.shoppinglistHttpUrl)

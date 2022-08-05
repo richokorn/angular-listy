@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { RecipeService } from 'src/app/shared/recipe.service';
@@ -16,11 +16,11 @@ import { RecipeService } from 'src/app/shared/recipe.service';
   ],
 })
 export class RecipeEditComponent implements OnInit {
+  defaultImagePath =
+    'https://janakihome.files.wordpress.com/2021/04/untitled-design-37.png?w=800&h=600&crop=1';
   id: number;
   editMode: boolean = false;
   recipeForm: FormGroup;
-  recipeImagePath: string;
-  recipeImageName: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -33,13 +33,7 @@ export class RecipeEditComponent implements OnInit {
       this.id = Number(params['id']);
       this.editMode = params['id'] != null;
       this.initForm();
-      this.recipeImagePath = this.recipeService.getRecipe(this.id).imagePath;
-      this.recipeImageName = this.recipeService.getRecipe(this.id).name;
     });
-  }
-
-  ngOnChange() {
-    this.recipeImagePath = this.recipeService.getRecipe(this.id).imagePath;
   }
 
   get controls() {
@@ -92,6 +86,7 @@ export class RecipeEditComponent implements OnInit {
       const recipe = this.recipeService.getRecipe(this.id);
       recipeName = recipe.name;
       recipeImagePath = recipe.imagePath;
+      this.defaultImagePath = recipe.imagePath;
       recipeDescription = recipe.description;
       if (recipe['ingredients']) {
         for (let ingredient of recipe.ingredients) {
