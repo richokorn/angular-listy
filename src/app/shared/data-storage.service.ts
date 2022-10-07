@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs';
+import { map, tap } from 'rxjs';
 import { Ingredient } from './ingredient.model';
 import { Recipe } from './recipe.model';
 import { RecipeService } from './recipe.service';
@@ -36,24 +36,21 @@ export class DataStorageService {
     });
   }
 
-  fetchData() {
-    this.http
-      .get<Recipe[]>(this.recipesHttpUrl)
-      .pipe(
-        map((recipes) => {
-          return recipes[Object.keys(recipes)[0]].map((recipe) => {
-            return {
-              ...recipe,
-              ingredients: recipe.ingredients ? recipe.ingredients : [],
-            };
-          });
-        })
-      )
-      .subscribe((recipes) => {
-        console.log('data-storage.service.ts', recipes);
-        this.recipeService.setRecipes(recipes);
-      });
+  fetchRecipes() {
+    this.http.get<Recipe[]>(this.recipesHttpUrl).pipe(
+      map((recipes) => {
+        return recipes[Object.keys(recipes)[0]].map((recipe) => {
+          return {
+            ...recipe,
+            ingredients: recipe.ingredients ? recipe.ingredients : [],
+          };
+        });
+      }),
+      tap((recipes) => this.recipeService.setRecipes(recipes))
+    );
+  }
 
+  fetchIngredients() {
     this.http
       .get<Ingredient[]>(this.shoppinglistHttpUrl)
       .subscribe((shoppingListIngredients) => {
@@ -61,6 +58,13 @@ export class DataStorageService {
           shoppingListIngredients[Object.keys(shoppingListIngredients)[0]]
         );
       });
+  }
+
+  fetchData() {
+    return {
+      recipes: this.fetchRecipes(),
+      shoppingList: this.fetchIngredients(),
+    };
   }
 
   loadDummyData() {
